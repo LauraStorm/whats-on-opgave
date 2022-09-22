@@ -1,12 +1,12 @@
 package laura.whatsonopgave.controller;
 
 import laura.whatsonopgave.model.Band;
-import laura.whatsonopgave.service.BandService;
 import laura.whatsonopgave.service.IBandService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -48,5 +48,10 @@ public class BandController {
         bandToUpdate.setName(band.getName());
         bandService.save(band);
         return new ResponseEntity<>(band, HttpStatus.OK);
+    }
+
+    @GetMapping("/getBandByName")
+    public ResponseEntity<List<Band>> getBandByName (String name){
+        return new ResponseEntity<> (bandService.findBandByName(name),HttpStatus.OK);
     }
 }

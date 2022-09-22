@@ -1,14 +1,13 @@
 package laura.whatsonopgave.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Review {
@@ -20,12 +19,10 @@ public class Review {
 
     @ManyToOne                      //Laver automatisk en Join kolonne
     //@JsonBackReference              //JSON den skal ikke blive ved med at = cikulær reference i @RestController
-    @EqualsAndHashCode.Exclude      //Fordi vi bruger @Data = hashcode() problem
     private Event event;
 
     @ManyToOne
     //@JsonBackReference
-    @EqualsAndHashCode.Exclude
     private User user;
 
 }
